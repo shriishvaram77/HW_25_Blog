@@ -1,0 +1,17 @@
+<!-- blog/article_confirm_delete.html -->
+{% extends 'blog/base.html' %}
+
+{% block title %}Удаление статьи{% endblock %}
+
+{% block content %}
+{% include 'blog/header.html' %}
+
+<h2>Удаление статьи</h2>
+<p>Вы действительно хотите удалить "{{ blogpost.title }}"?</p>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-danger">Подтвердить</button>
+    <a href="{% url 'blog:articles' %}" class="btn btn-primary">Отменить</a>
+</form>
+{% endblock %}

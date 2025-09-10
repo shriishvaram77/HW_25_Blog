@@ -1,0 +1,31 @@
+<!-- blog/articles.html -->
+
+{% extends 'blog/base.html' %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+{% include 'blog/header.html' %}
+<div class="row text-center">
+    {% for article in articles %}
+    <div class="col-3">
+        <div class="card mb-4 box-shadow">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">{{ article.title }}</h4>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                    <li>
+                        {{article.description|truncatechars:100}}
+                    </li>
+                    <li>Просмотров: {{ article.number_of_views }}</li>
+                </ul>
+                <div class="btn-group">
+                    <a class="btn btn-lg btn-block btn-outline-primary" href="{% url 'blog:article_details' article.pk %}">Подробнее</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
